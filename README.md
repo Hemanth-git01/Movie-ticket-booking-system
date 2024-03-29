@@ -1,4 +1,4 @@
-                                                                               "Movie-ticket-booking-system" 
+                                                               "Movie-ticket-booking-system" 
  The movie ticket booking system developed in C programming language allows users to conveniently reserve seats for their desired movies. Users interact with a user-friendly interface, where they can browse available movies, select showtimes, and choose their preferred seats. Behind the scenes, the system manages movie schedules, seat availability, and user bookings efficiently
  Movie Database: The system stores information about available movies, including titles, showtimes, theater locations, and seating arrangements. This data is typically stored in data structures like arrays or linked lists.
 
