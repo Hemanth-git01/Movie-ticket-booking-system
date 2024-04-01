@@ -1,66 +1,101 @@
-#include <stdio.h>
-#include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+//TO STORE CUSTOMER DETAILS
+struct Customer {
+    char name[50];
+    char email[50];
+    int tickets;
+    char movie[20];
+};
+// MOVIE NAME DISPLAY FUNCTION
+void movie_available() {
+   printf("Available Movies\n");
+   printf("Avengers\nEnd game\nInterstealer\n");
+}
+//TICKET BOOKING FUNCTION
+void movie_book_ticket() {
+    char movie_name[3][20] = {"AVENGERS", "ENDGAME", "INTERSTEALER"};
+    int PRICE[3] = {250, 500, 650};
+    char user_CHOICE[20];
+    unsigned int TICKETS = 0;
+    int MOVIE_PRICE;
 
+    printf("   PER TICKET DEPEND ON MOVIE  \n AVENGERS-  250   \n ENDGAME -  500 \n INTERSTEALER   -  650\n");
+    printf("\nEnter the movie name: ");
+    scanf("%s", user_CHOICE);
+    printf("\nNO OF TICKETS YOU WANT TO BOOK:");
+    scanf("%u", &TICKETS);
 
-// Function to display available seats
-void displaySeats() {
-    printf("Available Seats:\n");
-    printf("  1 2 3 4 5 6 7 8 9 10\n");
+    int found = 0;
+//PRICE CALCULATING USING FOR LOOP
+    for(int i = 0; i < 3; i++) {
+        if(strcmp(movie_name[i], user_CHOICE) == 0) {
+            printf("%s IS AVAILABLE FOR BOOKING.\n", user_CHOICE);
+            found = 1;
+            MOVIE_PRICE = TICKETS * PRICE[i];
+            printf("\nTOTAL PRICE: %d", MOVIE_PRICE);
+        }
+    }
 
+    if (!found) {
+        printf("%s IS NOT AVAILABLE FOR BOOKING.\n", user_CHOICE);
+        printf("PLEASE SELECT OTHERS");
+    }
+
+    struct Customer customer;
+    printf("\nEnter your name: ");
+    scanf("%s", customer.name);
+    printf("\nEnter your email: ");
+    scanf("%s", customer.email);
+    customer.tickets = TICKETS;
+    strcpy(customer.movie, user_CHOICE);
+}
+//FUNCTION FOR FOOD MENU AVAILABLITY
+void food_available() {
+    int y;
+    printf("popcorn PRESS 1 \n Juice PRESS 2 \n fries PRESS 3 \n");
+    scanf("%d", &y);
+    switch (y) {
+        case 1:
+            printf("Popcorn ordered\n");
+            break;
+        case 2:
+            printf("Juice ordered\n");
+            break;
+        case 3:
+            printf("Fries ordered\n");
+            break;
+        default:
+            printf("Invalid option\n");
+    }
 }
 
-// Function to book a seat
-void bookSeat() {
-    int row, col;
-    printf("Enter row and column number (e.g., 2 3): ");
-
-}
-
-// Function to display food/snack menu
-void displayMenu() {
-    printf("Food/Snack Menu:\n");
-
-}
-
-// Function to take food/snack order
-void orderFood() {
-    int choice, quantity;
-    printf("Enter item number to order: ");
-
-}
-
-// Main function
 int main() {
-    int option;
-    do {
-        printf("1. Display Available Seats\n");
-        printf("2. Book a Seat\n");
-        printf("3. Display Food/Snack Menu\n");
-        printf("4. Order Food/Snack\n");
-        printf("5. Exit\n");
-        printf("Enter your choice: ");
-        scanf("%d", &option);
+    int x;
 
-        switch (option) {
+    printf("Welcome to Movie Ticket Booking\n ");
+    do {
+        printf("enter 1 to check movie\n ");
+        printf("enter 2 to book movie\n ");
+        printf("enter 3 to food menu\n ");
+        printf("enter 4 to exit\n ");
+        scanf("%d", &x);
+//SWITCH STATEMENT FOR MENU IS USED
+        switch(x) {
             case 1:
-                displaySeats();
+                movie_available();
                 break;
             case 2:
-                bookSeat();
+                movie_book_ticket();
                 break;
             case 3:
-                displayMenu();
+                food_available();
                 break;
             case 4:
-                orderFood();
-                break;
-            case 5:
-                printf("Exiting...\n");
+                printf("Thank you for using services\n");
                 break;
             default:
-                printf("Invalid option.\n");
+                printf("WRONG CHOICE!! TRY AGAIN.\n");
         }
-    } while (option != 5);
-
-    return 0;
+    } while(x != 4);
 }
