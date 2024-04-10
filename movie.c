@@ -1,12 +1,6 @@
 #include<stdio.h>
 #include<string.h>
-//TO STORE CUSTOMER DETAILS
-struct Customer {
-    char name[50];
-    char email[50];
-    int tickets;
-    char movie[20];
-};
+#include"main.h"
 // MOVIE NAME DISPLAY FUNCTION
 void movie_available() {
    printf("Available Movies\n");
