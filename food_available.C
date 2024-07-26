@@ -6,7 +6,11 @@ void food_available() {
     printf("Food Menu:\n");
     printf("1. Popcorn\n2. Juice\n3. Fries\n");
     printf("Enter your choice: ");
-    scanf("%d", &y);
+     while (scanf("%d", &y) != 1 || y < 1 || y > 3) {
+        while (getchar() != '\n'); // Clear invalid input from buffer
+        printf("Invalid input. Please enter a number between 1 and 3: ");
+    }
+
 
     switch (y) {
         case 1:

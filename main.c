@@ -15,8 +15,12 @@ int main() {
         printf("2. Book movie tickets\n");
         printf("3. Order food\n");
         printf("4. Exit\n");
-        printf("Enter your choice: ");
-        scanf("%d", &x);
+
+            while (scanf("%d", &x) != 1 || x < 1 || x > 4) {
+           while (getchar() != '\n'); // Clear invalid input from buffer
+            printf("Invalid input. Please enter a number between 1 and 4: ");
+            }
+
 
         // SWITCH STATEMENT FOR MENU
         switch (x) {
@@ -35,7 +39,7 @@ int main() {
             default:
                 printf("WRONG CHOICE!! TRY AGAIN.\n");
         }
-    } while (x != 4);
+    }while (x != 4);
 
     return 0;
 }
