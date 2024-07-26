@@ -1,23 +1,9 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 #include <ctype.h>
+#include "movie.h"
 
-// Declaration of Customer structure
-struct Customer {
-    char name[50];
-    char email[50];
-    unsigned int tickets;
-    char movie[20];
-};
-
-// MOVIE NAME DISPLAY FUNCTION
-void movie_available() {
-    printf("Available Movies\n");
-    printf("1. AVENGERS - 250\n2. ENDGAME - 500\n3. INTERSTELLAR - 650\n");
-}
-
-// TICKET BOOKING FUNCTION
 void movie_book_ticket(unsigned int *total_tickets_sold, unsigned int total_tickets) {
     char movie_name[3][20] = {"AVENGERS", "ENDGAME", "INTERSTELLAR"};
     int PRICE[3] = {250, 500, 650};
@@ -55,7 +41,7 @@ void movie_book_ticket(unsigned int *total_tickets_sold, unsigned int total_tick
     }
 
     if (!found) {
-        printf("%s MOVIE IS NOT AVAILABLE FOR BOOKING.\n", user_CHOICE);
+        printf("%s IS NOT AVAILABLE FOR BOOKING.\n", user_CHOICE);
         printf("PLEASE SELECT OTHERS\n");
         return;
     }
@@ -87,64 +73,4 @@ void movie_book_ticket(unsigned int *total_tickets_sold, unsigned int total_tick
 
     // Free allocated memory
     free(customer);
-}
-
-// FUNCTION FOR FOOD MENU AVAILABILITY
-void food_available() {
-    int y;
-    printf("Food Menu:\n");
-    printf("1. Popcorn\n2. Juice\n3. Fries\n");
-    printf("Enter your choice: ");
-    scanf("%d", &y);
-
-    switch (y) {
-        case 1:
-            printf("Popcorn ordered\n");
-            break;
-        case 2:
-            printf("Juice ordered\n");
-            break;
-        case 3:
-            printf("Fries ordered\n");
-            break;
-        default:
-            printf("Invalid option\n");
-    }
-}
-
-int main() {
-    int x;
-    unsigned int total_tickets_sold = 0;
-    const unsigned int total_tickets = 120;
-
-    printf("Welcome to Movie Ticket Booking\n");
-    do {
-        printf("\nMain Menu:\n");
-        printf("1. Check available movies\n");
-        printf("2. Book movie tickets\n");
-        printf("3. Order food\n");
-        printf("4. Exit\n");
-        printf("Enter your choice: ");
-        scanf("%d", &x);
-
-        // SWITCH STATEMENT FOR MENU
-        switch (x) {
-            case 1:
-                movie_available();
-                break;
-            case 2:
-                movie_book_ticket(&total_tickets_sold, total_tickets);
-                break;
-            case 3:
-                food_available();
-                break;
-            case 4:
-                printf("Thank you for using our services\n");
-                break;
-            default:
-                printf("WRONG CHOICE!! TRY AGAIN.\n");
-        }
-    } while (x != 4);
-
-    return 0;
 }
