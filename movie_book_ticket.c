@@ -28,11 +28,11 @@ int is_valid_email(const char *email) {
 }
 
 void movie_book_ticket(FILE *file, unsigned int *total_tickets_sold, unsigned int total_tickets) {
-    char movie_name[3][20] = {"AVENGERS", "ENDGAME", "INTERSTELLAR"};
+    char movie_name[3][20] = {"KALKI", "FIGHTER", "MAHARAJA"};
     int BASE_PRICE[3][3] = {
-        {250, 350, 450},
-        {500, 600, 700},
-        {650, 750, 850}
+        {170, 250, 380},
+        {150, 220, 430},
+        {180, 240, 360}
     };
     char user_CHOICE[20];
     unsigned int TICKETS = 0;
@@ -40,9 +40,9 @@ void movie_book_ticket(FILE *file, unsigned int *total_tickets_sold, unsigned in
     char *CATEGORY_NAME[3] = {"SILVER", "GOLD", "RECLINER"};
     int MOVIE_PRICE;
 
-    printf("1. AVENGERS - Silver: 250, Gold: 350, Recliner: 450\n");
-    printf("2. ENDGAME - Silver: 500, Gold: 600, Recliner: 700\n");
-    printf("3. INTERSTELLAR - Silver: 650, Gold: 750, Recliner: 850\n");
+    printf("1. KALKI - Silver:170 , Gold: 250, Recliner: 380\n");
+    printf("2. FIGHTER - Silver: 150, Gold: 220, Recliner: 430\n");
+    printf("3. MAHARAJA - Silver: 180, Gold: 240, Recliner: 360\n");
     printf("\nEnter the movie name: ");
     scanf("%s", user_CHOICE);
 
