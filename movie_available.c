@@ -3,7 +3,7 @@
 
 void movie_available(FILE *file) {
     fprintf(file, "Available Movies\n");
-    fprintf(file, "1. AVENGERS\n2. ENDGAME\n3. INTERSTELLAR\n");
+    fprintf(file, "1. KALKI\n2. FIGHTER\n3. MAHARAJA\n");
     printf("Available Movies\n");
-    printf("1. AVENGERS\n2. ENDGAME\n3. INTERSTELLAR\n");
+    printf("1. KALKI\n2. FIGHTER\n3. MAHARAJA\n");
 }
