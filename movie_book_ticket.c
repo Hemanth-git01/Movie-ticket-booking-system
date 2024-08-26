@@ -76,7 +76,7 @@ void movie_book_ticket(FILE *file, unsigned int *total_tickets_sold, unsigned in
     int found = 0;
     for (int i = 0; i < 3; i++) {
         if (strcmp(movie_name[i], user_CHOICE) == 0) {
-            printf("%s IS AVAILABLE FOR BOOKING.\n", user_CHOICE);
+            printf("%s available for booking\n", user_CHOICE);
             found = 1;
             MOVIE_PRICE = TICKETS * BASE_PRICE[i][CATEGORY - 1];
             printf("\nTOTAL PRICE: %d\n", MOVIE_PRICE);
@@ -117,6 +117,7 @@ void movie_book_ticket(FILE *file, unsigned int *total_tickets_sold, unsigned in
 
     *total_tickets_sold += TICKETS;
 
+
     fprintf(file, "\nBooking Details:\n");
     fprintf(file, "Name: %s\n", customer->name);
     fprintf(file, "Email: %s\n", customer->email);
@@ -134,6 +135,7 @@ void movie_book_ticket(FILE *file, unsigned int *total_tickets_sold, unsigned in
     printf("Category: %s\n", CATEGORY_NAME[CATEGORY - 1]);
     printf("Total Price: %d\n", MOVIE_PRICE);
     printf("Remaining Tickets: %u\n", total_tickets - *total_tickets_sold);
+    printf("movie booked successfully\n");
 
     free(customer);
 }
