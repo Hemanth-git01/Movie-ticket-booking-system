@@ -96,8 +96,13 @@ void movie_book_ticket(FILE *file, unsigned int *total_tickets_sold, unsigned in
         return;
     }
 
-    printf("\nEnter your name: ");
-    scanf("%s", customer->name);
+    do {
+        printf("\nEnter your name: ");
+        scanf("%s", customer->name);
+        if (!is_alpha_string(customer->name)) {
+            printf("Invalid name. Please enter a name with only alphabetic characters.\n");
+        }
+    } while (!is_alpha_string(customer->name));
 
     do {
         printf("Enter your email: ");
