@@ -6,3 +6,9 @@ Available Movies
 3. MAHARAJA
 Name: hem, Email: mab@., Movie: KALKI, Tickets: 45, Category: SILVER, Total Price: 7650
 Food Item: 1, Size: 3, Quantity: 5, Total Price: 2750.00
+Available Movies
+1. KALKI
+2. FIGHTER
+3. MAHARAJA
+Name: hen, Email: HEMANt@., Movie: KALKI, Tickets: 5, Category: SILVER, Total Price: 850
+Food Item: 1, Size: 1, Quantity: 5, Total Price: 1250.00
