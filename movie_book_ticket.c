@@ -14,6 +14,7 @@ int is_valid_integer(const char *input) {
 }
 
 
+
 void movie_book_ticket(FILE *file, unsigned int *total_tickets_sold, unsigned int total_tickets) {
     char movie_name[3][20] = {"KALKI", "FIGHTER", "MAHARAJA"};
     int BASE_PRICE[3][3] = {

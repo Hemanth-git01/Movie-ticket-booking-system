@@ -65,18 +65,18 @@ int is_alpha_string(const char *str) {
 }
 
 int is_valid_email(const char *email) {
-    int has_lower = 0;
-    int has_special = 0;
-
-    for (int i = 0; email[i]; i++) {
-        if (islower((unsigned char)email[i])) {
+    int has_at = 0, has_dot = 0, has_lower = 0;
+    while (*email) {
+        if (islower(*email)) {
             has_lower = 1;
-        } else if (!isalnum((unsigned char)email[i])) {
-            has_special = 1;
+        } else if (*email == '@') {
+            has_at = 1;
+        } else if (*email == '.') {
+            has_dot = 1;
         }
+        email++;
     }
-
-    return has_lower && has_special;
+    return has_at && has_dot && has_lower;
 }
 
 int main() {
