@@ -4,6 +4,16 @@
 #include <string.h>
 #include <ctype.h>
 
+int is_valid_integer(const char *input) {
+    for (int i = 0; input[i] != '\0'; i++) {
+        if (!isdigit(input[i])) {
+            return 0;  // Return false if a non-digit character is found
+        }
+    }
+    return 1;  // Return true if the input contains only digits
+}
+
+
 void movie_book_ticket(FILE *file, unsigned int *total_tickets_sold, unsigned int total_tickets) {
     char movie_name[3][20] = {"KALKI", "FIGHTER", "MAHARAJA"};
     int BASE_PRICE[3][3] = {
@@ -28,6 +38,10 @@ void movie_book_ticket(FILE *file, unsigned int *total_tickets_sold, unsigned in
 
         for (int i = 0; user_choice[i]; i++) {
             user_choice[i] = toupper(user_choice[i]);
+        }
+        if (!is_alpha_string(user_choice)) {
+            printf("Invalid movie name. Please enter a valid movie name.\n");
+            continue;
         }
 
         for (int i = 0; i < 3; i++) {
@@ -94,7 +108,7 @@ void movie_book_ticket(FILE *file, unsigned int *total_tickets_sold, unsigned in
         printf("Enter your email: ");
         scanf("%s", customer->email);
         if (!is_valid_email(customer->email)) {
-            printf("Invalid email. Please enter an email with at least one lowercase letter and one special character.\n");
+            printf("Invalid email. Please enter an email with at least one lowercase letter and one at and one dot .\n");
         }
     } while (!is_valid_email(customer->email));
 

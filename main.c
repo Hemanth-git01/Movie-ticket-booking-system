@@ -11,6 +11,7 @@
 // Function declarations
 int is_alpha_string(const char *str);
 int is_valid_email(const char *email);
+int get_valid_choice();
 void movie_book_ticket(FILE *file, unsigned int *total_tickets_sold, unsigned int total_tickets);
 void movie_available(FILE *file);
 void food_available(FILE *file);
@@ -28,13 +29,30 @@ void displayMenu() {
 // Function to get a valid user choice
 int getValidChoice() {
     int choice;
-    printf("Enter your choice: ");
-    while (scanf("%d", &choice) != 1 || choice < 1 || choice > 4) {
-        while (getchar() != '\n'); // Clear the input buffer
-        printf("Invalid input. Please enter a number between 1 and 4: ");
+    char ch;
+    while (1) {
+        printf("\nEnter your choice: ");
+        if (scanf("%d", &choice) == 1) {
+            ch = getchar();
+            if (ch == '\n') {
+                if (choice >= 1 && choice <= 4) {
+                    return choice;
+                } else {
+                    printf("Invalid choice. Please try again.\n");
+                }
+            } else {
+                printf("Invalid choice. Please enter a valid option.\n");
+                while (ch != '\n' && ch != EOF) {
+                    ch = getchar();
+                }
+            }
+        } else {
+            printf("Invalid choice. Please enter a valid option.\n");
+            while (getchar() != '\n');
+        }
     }
-    return choice;
 }
+
 
 int is_alpha_string(const char *str) {
     while (*str) {

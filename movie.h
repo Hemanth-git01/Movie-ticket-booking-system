@@ -16,7 +16,7 @@ struct Customer {
 
 // Function declarations
 int is_alpha_string(const char *str);          // Function to check if the string contains only alphabetic characters
-int is_valid_email(const char *email);        // Function to validate the email
+int is_valid_email(const char *email);       // Function to validate the email
 
 void movie_book_ticket(FILE *file, unsigned int *total_tickets_sold, unsigned int total_tickets);
 void movie_available(FILE *file);
