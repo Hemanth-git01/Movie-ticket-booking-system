@@ -1,67 +1,81 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include <string.h>
+#include <ctype.h>
 #include "movie.h"
 #include "file.c"
 #include "movie_available.c"
 #include "movie_book_ticket.c"
 #include "food_available.c"
 
-// Function to get a valid menu choice
-int get_valid_choice() {
+// Function declarations
+int is_alpha_string(const char *str);
+int is_valid_email(const char *email);
+void movie_book_ticket(FILE *file, unsigned int *total_tickets_sold, unsigned int total_tickets);
+void movie_available(FILE *file);
+void food_available(FILE *file);
+FILE* initialize_file(const char* filename);
+void close_file(FILE* file);
+
+void displayMenu() {
+    printf("Movie Ticket Booking System\n");
+    printf("1. View available movies\n");
+    printf("2. Book movie tickets\n");
+    printf("3. Order food\n");
+    printf("4. Exit\n");
+}
+
+// Function to get a valid user choice
+int getValidChoice() {
     int choice;
-    char buffer[10];
-
-    while (1) {
-        printf("Please enter your choice: ");
-        if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
-            // Remove trailing newline character
-            buffer[strcspn(buffer, "\n")] = '\0';
-
-            // Check if the input is numeric
-            int valid_input = 1;
-            for (int i = 0; buffer[i] != '\0'; i++) {
-                if (!isdigit(buffer[i])) {
-                    valid_input = 0;
-                    break;
-                }
-            }
-
-            if (valid_input) {
-                choice = atoi(buffer);
-                if (choice >= 1 && choice <= 5) {
-                    return choice; // Valid choice
-                }
-            }
-        }
-
-        // If invalid input, prompt the user again
-       printf("Invalid input. Please enter a number between 1 and 4.\n");
+    printf("Enter your choice: ");
+    while (scanf("%d", &choice) != 1 || choice < 1 || choice > 4) {
+        while (getchar() != '\n'); // Clear the input buffer
+        printf("Invalid input. Please enter a number between 1 and 4: ");
     }
+    return choice;
+}
+
+int is_alpha_string(const char *str) {
+    while (*str) {
+        if (!isalpha((unsigned char)*str)) {
+            return 0; // False if non-alphabetic character is found
+        }
+        str++;
+    }
+    return 1; // True if all characters are alphabetic
+}
+
+int is_valid_email(const char *email) {
+    int has_lower = 0;
+    int has_special = 0;
+
+    for (int i = 0; email[i]; i++) {
+        if (islower((unsigned char)email[i])) {
+            has_lower = 1;
+        } else if (!isalnum((unsigned char)email[i])) {
+            has_special = 1;
+        }
+    }
+
+    return has_lower && has_special;
 }
 
 int main() {
-    FILE *file = initialize_file("output.txt");
-    if (!file) {
+    FILE *file;
+    unsigned int total_tickets_sold = 0;
+    const unsigned int total_tickets = 50;
+
+    file = initialize_file("booking_records.txt");
+    if (file == NULL) {
         return 1;
     }
 
-    unsigned int total_tickets_sold = 0;
-    const unsigned int total_tickets = 120;
-
-    printf("Welcome to Movie Ticket Booking\n");
-
     int choice;
-    do {
-        // Print the menu only once outside the loop
-        printf("\nMain Menu:\n");
-        printf("1. Check available movies\n");
-        printf("2. Book movie tickets\n");
-        printf("3. Order food\n");
-        printf("4. Exit\n");
+    displayMenu();
 
-        choice = get_valid_choice();
+    do {
+        choice = getValidChoice();
 
         switch (choice) {
             case 1:
@@ -74,10 +88,13 @@ int main() {
                 food_available(file);
                 break;
             case 4:
-                printf("Thank you for using our services\n");
+                printf("Exiting the system.\n");
+                break;
+            default:
+                printf("Invalid choice. Please select a valid option.\n");
                 break;
         }
-    } while (choice != 5);
+    } while (choice != 4);
 
     close_file(file);
     return 0;

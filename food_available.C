@@ -1,6 +1,8 @@
-#include <stdio.h>
 #include "movie.h"
+#include <stdio.h>
+#include <stdlib.h>
 
+// Function to show available food items
 void food_available(FILE *file) {
     int choice, size, quantity;
     float price = 0.0, total_price = 0.0;
@@ -11,55 +13,35 @@ void food_available(FILE *file) {
     printf("3. Fries - Small (90.00), Medium (130.00), Large (160.00)\n");
     printf("Enter your choice: ");
     while (scanf("%d", &choice) != 1 || choice < 1 || choice > 3) {
-        while (getchar() != '\n');  // Clear the input buffer
+        while (getchar() != '\n'); // Clear the input buffer
         printf("Invalid input. Please enter a number between 1 and 3: ");
     }
 
     printf("Enter size (1 for Small, 2 for Medium, 3 for Large): ");
     while (scanf("%d", &size) != 1 || size < 1 || size > 3) {
-        while (getchar() != '\n');  // Clear the input buffer
-        printf("Invalid input. Please enter a size number between 1 and 3: ");
+        while (getchar() != '\n'); // Clear the input buffer
+        printf("Invalid input. Please enter a number between 1 and 3: ");
     }
 
     printf("Enter quantity: ");
     while (scanf("%d", &quantity) != 1 || quantity < 1) {
-        while (getchar() != '\n');  // Clear the input buffer
-        printf("Invalid input. Please enter a positive number for quantity: ");
+        while (getchar() != '\n'); // Clear the input buffer
+        printf("Invalid input. Please enter a positive number: ");
     }
 
     switch (choice) {
-        case 1:  // Popcorn
-            switch (size) {
-                case 1: price = 250.00; break;  // Small
-                case 2: price = 350.00; break;  // Medium
-                case 3: price = 550.00; break;  // Large
-            }
-            total_price = price * quantity;
-            fprintf(file, "Popcorn ordered - Size: %d, Quantity: %d, Total Price: %.2f\n", size, quantity, total_price);
-            printf("Popcorn ordered - Size: %d, Quantity: %d, Total Price: %.2f\n", size, quantity, total_price);
+        case 1:
+            price = (size == 1) ? 250.00 : (size == 2) ? 350.00 : 550.00;
             break;
-        case 2:  // Juice
-            switch (size) {
-                case 1: price = 50.00; break;  // Small
-                case 2: price = 80.00; break;  // Medium
-                case 3: price = 120.00; break;  // Large
-            }
-            total_price = price * quantity;
-            fprintf(file, "Juice ordered - Size: %d, Quantity: %d, Total Price: %.2f\n", size, quantity, total_price);
-            printf("Juice ordered - Size: %d, Quantity: %d, Total Price: %.2f\n", size, quantity, total_price);
+        case 2:
+            price = (size == 1) ? 50.00 : (size == 2) ? 80.00 : 120.00;
             break;
-        case 3:  // Fries
-            switch (size) {
-                case 1: price = 90.00; break;  // Small
-                case 2: price = 130.00; break;  // Medium
-                case 3: price = 160.00; break;  // Large
-            }
-            total_price = price * quantity;
-            fprintf(file, "Fries ordered - Size: %d, Quantity: %d, Total Price: %.2f\n", size, quantity, total_price);
-            printf("Fries ordered - Size: %d, Quantity: %d, Total Price: %.2f\n", size, quantity, total_price);
+        case 3:
+            price = (size == 1) ? 90.00 : (size == 2) ? 130.00 : 160.00;
             break;
-        default:
-            fprintf(file, "Invalid option\n");
-            printf("Invalid option\n");
     }
+
+    total_price = price * quantity;
+    fprintf(file, "Food Item: %d, Size: %d, Quantity: %d, Total Price: %.2f\n", choice, size, quantity, total_price);
+    printf("Total Price: %.2f\n", total_price);
 }

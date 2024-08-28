@@ -1,0 +1,2 @@
+Name: hem, Email: hema@., Movie: KALKI, Tickets: 45, Category: SILVER, Total Price: 7650
+Food Item: 1, Size: 1, Quantity: 5, Total Price: 1250.00
